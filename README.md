@@ -11,4 +11,4 @@ Coffee+mocca+vanilla = $5+$2+$3 = $10
 Approach to this cookie using the composite pattern. 
 https://code-maze.com/composite/
 
-![CoffeWithToppings_UML drawio](https://github.com/pablopodroyale/CoffeWithToppings/assets/22822664/a1ab1f71-3edc-4dcc-bf2c-ec5f94048ae7)
+![CoffeWithToppings_UML drawio](https://github.com/pablopodroyale/CoffeWithToppings/assets/22822664/4e99c740-cb6b-4321-ac6c-01456447a1ef)
