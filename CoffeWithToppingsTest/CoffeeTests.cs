@@ -32,7 +32,8 @@ namespace CoffeWithToppingsTest
         }
 
         [Test]
-        [TestCase(new Object[] { "Cofee", "Milk", "AlmondMilk", "Vanilla" }, new int[] { 5, 2, 1, 3 }, 11)]
+        //Customer: I'd like a coffee with almond milk and vanilla, please
+        [TestCase(new Object[] { "Coffee", "Milk", "AlmondMilk", "Vanilla" }, new int[] { 5, 2, 1, 3 }, 11)]
         public void CoffeeTestsTwoComposites(Object[] names, int[] prices, double priceExpected)
         {
             ProductComposite? firstComposite = null;
@@ -64,6 +65,36 @@ namespace CoffeWithToppingsTest
 
             double priceResult = firstComposite.GetPrice();
             Assert.That(priceResult, Is.EqualTo(priceExpected));
+        }
+
+        [Test]
+        //Customer: I'd like a double hamburguer with cheddar, blue cheese, bacon, tomato and caramel onion with french fries
+        //Another strategy is to set $0 to composites and only set the priceto the leafs
+        public void FrenchHamburguerComboTest ()
+        {
+            ProductComposite frenchCombo = new ProductComposite("French Combo", 0);
+            ProductComposite doubleHambuerguer = new ProductComposite("Double Hamburguer", 5);
+            ProductComposite cheese = new ProductComposite("Cheese", 0);
+            ProductLeaf blueCheese = new ProductLeaf("Blue cheese", 5);
+            ProductLeaf bacon = new ProductLeaf("Bacon", 1);
+            ProductLeaf tomato = new ProductLeaf("Tomato", 1);
+            ProductComposite onion = new ProductComposite("Onion", 0);
+            ProductLeaf caramelOnion = new ProductLeaf("Caranel Onion", 2);
+            ProductComposite fries = new ProductComposite("Fries", 0);
+            ProductLeaf frenchFries = new ProductLeaf("French Fries", 2);
+
+
+            cheese.Add(blueCheese);
+            onion.Add(caramelOnion);
+            fries.Add(frenchFries);
+            doubleHambuerguer.Add(cheese);
+            doubleHambuerguer.Add(onion);
+            doubleHambuerguer.Add(bacon);
+            doubleHambuerguer.Add(tomato);
+            frenchCombo.Add(doubleHambuerguer);
+            frenchCombo.Add(frenchFries);
+            double priceResult = frenchCombo.GetPrice();
+            Assert.That(priceResult, Is.EqualTo(16));
         }
     }
 }
